@@ -17,10 +17,10 @@ public class DisciplinaService {
 
 	private static final String URL_SERVICE = ConfigReader.getProperty("url_service") + "/disciplinas";
 	
-	public Disciplina recuperarDisciplina() throws ConnectionException{
+	public Disciplina recuperarDisciplina(Long id) throws ConnectionException{
 		URLRequestUtil requestUtil = new URLRequestUtil();
-		requestUtil.setURL(URL_SERVICE + "/recuperarDisciplina").setTypeRequest(TypeRequest.POST);
-		
+		requestUtil.setURL(URL_SERVICE + "/recuperarDisciplina/"+ Long.toString(id)).setTypeRequest(TypeRequest.POST);
+
 		String jsonResponse = requestUtil.execute();
 		
 		Gson gson = new Gson();

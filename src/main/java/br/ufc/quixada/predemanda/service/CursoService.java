@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.quixada.predemanda.exception.ConnectionException;
 import br.ufc.quixada.predemanda.model.Curso;
 import br.ufc.quixada.predemanda.util.ConfigReader;
@@ -17,10 +18,10 @@ public class CursoService {
 
 	private static final String URL_SERVICE = ConfigReader.getProperty("url_service") + "/cursos";
 	
-	public Curso recuperarCurso() throws ConnectionException{
+	public Curso recuperarCurso(Long id) throws ConnectionException{
 		URLRequestUtil requestUtil = new URLRequestUtil();
-		requestUtil.setURL(URL_SERVICE + "/recuperarCurso").setTypeRequest(TypeRequest.POST);
-		
+		requestUtil.setURL(URL_SERVICE + "/recuperarCurso/"+ Long.toString(id)).setTypeRequest(TypeRequest.POST);
+
 		String jsonResponse = requestUtil.execute();
 		
 		Gson gson = new Gson();

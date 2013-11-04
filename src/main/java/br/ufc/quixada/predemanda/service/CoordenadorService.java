@@ -17,10 +17,10 @@ public class CoordenadorService {
 
 	private static final String URL_SERVICE = ConfigReader.getProperty("url_service") + "/coordenadores";
 	
-	public Coordenador recuperarCoordenador() throws ConnectionException{
+	public Coordenador recuperarCoordenador(Long id) throws ConnectionException{
 		URLRequestUtil requestUtil = new URLRequestUtil();
-		requestUtil.setURL(URL_SERVICE + "/recuperarCoordenador").setTypeRequest(TypeRequest.POST);
-		
+		requestUtil.setURL(URL_SERVICE + "/recuperarCoordenador/"+ Long.toString(id)).setTypeRequest(TypeRequest.POST);
+
 		String jsonResponse = requestUtil.execute();
 		
 		Gson gson = new Gson();
