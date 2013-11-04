@@ -32,6 +32,7 @@
               <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
             </form>
           </div>
+          <c:if test="${not empty erro}"><p>${erro}</p></c:if>
         </div>
       </div>
 

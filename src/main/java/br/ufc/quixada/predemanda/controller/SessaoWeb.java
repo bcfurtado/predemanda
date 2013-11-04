@@ -1,37 +1,29 @@
 package br.ufc.quixada.predemanda.controller;
 
 import br.com.caelum.vraptor.Resource;
-import br.com.caelum.vraptor.ioc.Component;
 import br.com.caelum.vraptor.ioc.SessionScoped;
 import br.ufc.quixada.predemanda.model.Pessoa;
 
-@Component
+@Resource
 @SessionScoped
 public class SessaoWeb {
 
-	private Pessoa pessoaLogado;
+	private Pessoa pessoa;
 
-	public SessaoWeb() {
-	}
-	
 	public void login(Pessoa pessoa) {
-		this.pessoaLogado = pessoa;
+		this.pessoa = pessoa;
 	}
 
 	public Pessoa getPessoa() {
-		return pessoaLogado;
-	}
-
-	public String getNome() {
-		return pessoaLogado.getNome();
+		return pessoa;
 	}
 
 	public boolean isLogado() {
-		return pessoaLogado != null;
+		return pessoa != null;
 	}
 
 	public void logout() {
-		this.pessoaLogado = null;
+		this.pessoa = null;
 	}
 
 }

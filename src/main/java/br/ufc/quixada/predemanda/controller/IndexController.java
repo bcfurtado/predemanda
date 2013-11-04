@@ -13,12 +13,12 @@ import br.ufc.quixada.predemanda.model.Pessoa;
 public class IndexController {
 
 	private SessaoWeb sessaoWeb;
-//	private PessoaBO pessoaBO;
+	private PessoaBO pessoaBO;
 	private final Result result;
 	
-	public IndexController(SessaoWeb sessaoWeb, Result result) {
+	public IndexController(SessaoWeb sessaoWeb, PessoaBO pessoaBO, Result result) {
 		this.sessaoWeb = sessaoWeb;
-//		this.pessoaBO = pessoaBO;
+		this.pessoaBO = pessoaBO;
 		this.result = result;
 	}
 
@@ -30,17 +30,19 @@ public class IndexController {
 	@Post("/autenticar")
 	public void autenticar(String login, String senha){
 		try {
-			PessoaBO pessoaBO = new PessoaBO();
 			Pessoa pessoa = pessoaBO.autenticar(login, senha);
 			sessaoWeb.login(pessoa);
+			result.redirectTo(DashboardController.class).index();
 		} catch (BusinessLogicException | ConnectionException e) {
-			e.printStackTrace();
+			result.include("erro", e.getMessage());
+			result.redirectTo(this).index();
 		}
 	}
 	
 	@Path("/logout")
 	public void logout(){
-		
+		sessaoWeb.logout();
+		result.redirectTo(this).index();
 	}
 
 }

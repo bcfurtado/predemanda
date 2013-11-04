@@ -10,6 +10,7 @@ import br.ufc.quixada.predemanda.service.AlunoService;
 import br.ufc.quixada.predemanda.service.CoordenadorService;
 import br.ufc.quixada.predemanda.service.PessoaService;
 
+@Component
 public class PessoaBO {
 
 	private PessoaService pessoaService;
@@ -24,13 +25,16 @@ public class PessoaBO {
 	
 	public Pessoa autenticar(String login, String senha) throws BusinessLogicException, ConnectionException{
 			List<Pessoa> pessoas = pessoaService.listarPessoas();
+//			Pessoa p = null;
 			for (Pessoa pessoa : pessoas) {
 				if (pessoa.getLogin().equals(login) && pessoa.getSenha().equals(senha)){
 					pessoa.setCoordenador(coordenadorService.recuperarCoordenador(pessoa.getId()));
 					pessoa.setAluno(alunoService.recuperarAluno(pessoa.getId()));
-					return pessoa;
+					System.out.println("OK");
+//					p = pessoa;
 				}
 			}
+//			return p;
 			throw new BusinessLogicException("Usuário ou senha incorreto.");
 	}
 	

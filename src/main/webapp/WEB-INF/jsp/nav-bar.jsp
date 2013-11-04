@@ -1,4 +1,3 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -14,7 +13,7 @@
         </ul>
         <c:if test="${sessaoWeb.logado}">
         <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessaoWeb.nome} <b class="caret"></b></a>
+          <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessaoWeb.pessoa.nome} <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#">Action</a></li>
               <li><a href="#">Another action</a></li>
