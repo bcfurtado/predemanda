@@ -1,18 +1,31 @@
 package br.ufc.quixada.predemanda.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Pessoa {
 
-	private String id;
+	@Id
+	private Long id;
+	
 	private String nome;
 	private String login;
 	private String senha;
 	private String email;
-
-	public String getId() {
+	
+	@OneToOne
+	private Aluno aluno;
+	
+	@OneToOne
+	private Coordenador coordenador;
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -48,4 +61,28 @@ public class Pessoa {
 		this.email = email;
 	}
 
+	public boolean isAluno() {
+		return aluno != null ? true : false;
+	}
+
+	public boolean isCoordenador() {
+		return coordenador != null ? true : false;
+	}
+
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
+	}
+
+	public Coordenador getCoordenador() {
+		return coordenador;
+	}
+
+	public void setCoordenador(Coordenador coordenador) {
+		this.coordenador = coordenador;
+	}
+	
 }

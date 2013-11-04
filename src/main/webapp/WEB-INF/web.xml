@@ -17,16 +17,16 @@
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
 
-	<context-param>
+<!-- 	<context-param>
 		<param-name>br.com.caelum.vraptor.packages</param-name>
 		<param-value>br.com.caelum.vraptor.util.jpa</param-value>
-	</context-param>
+	</context-param> -->
 
-	<jsp-config>
+	<!-- <jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
 			<page-encoding>UTF-8</page-encoding>
 			<include-prelude>/WEB-INF/prelude.jspf</include-prelude>
 		</jsp-property-group>
-	</jsp-config>
+	</jsp-config> -->
 </web-app>

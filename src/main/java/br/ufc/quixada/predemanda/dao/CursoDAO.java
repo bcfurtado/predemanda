@@ -2,6 +2,7 @@ package br.ufc.quixada.predemanda.dao;
 
 import java.util.List;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.quixada.predemanda.exception.DAOException;
 import br.ufc.quixada.predemanda.model.PreDemanda;
 
