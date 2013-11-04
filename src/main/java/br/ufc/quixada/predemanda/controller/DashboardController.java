@@ -4,28 +4,26 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 
+
 @Resource
-public class IndexController {
+public class DashboardController {
 
 	private final Result result;
 
-	public IndexController(Result result) {
+	public DashboardController(Result result) {
 		this.result = result;
 	}
 
-	@Path("/")	//Login
+	@Path("/dashboard")
 	public void index() {
 		result.include("var", "Minha Var!");
 	}
 	
-	@Path("/autenticar")
-	public void autenticar(String login, String senha){
-		
+	@Path("/dashboard/criar")
+	public void criar(){
+		result.include("var", "Minha Var!");
 	}
 	
-	@Path("/logout")
-	public void logout(){
-		
-	}
-
+	
+	
 }

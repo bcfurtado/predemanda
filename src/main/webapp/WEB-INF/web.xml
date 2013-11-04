@@ -5,33 +5,6 @@
 	id="WebApp_ID" version="2.5">
 	<display-name>predemanda</display-name>
 
-	<!--
-		VRaptor will scan classpath for all @Component and 
-		@Resource inside WEB-INF/classes
-
-		If you want to load them also from WEB-INF/lib/ jars, 
-		you need to specify from which packages they will
-		be loaded, comma separated:
-	-->
-	
-	<!-- 
-	<context-param>
-        	<param-name>br.com.caelum.vraptor.packages</param-name>
-	        <param-value>br.com.caelum.vraptor.blank</param-value>
-    </context-param>
-     -->
-    
-	<!--  
-	   if you are using a servlet 3.0 container 
-		as glassfish 3 or jetty 8, you dont need this
-		filter configuration 
-	-->
-		
-	<!-- <context-param>
-        	<param-name>br.com.caelum.vraptor.provider</param-name>
-	        <param-value>br.com.caelum.vraptor.ioc.guice.GuiceProvider</param-value>
-    </context-param>-->
-		
 	<filter>
 		<filter-name>vraptor</filter-name>
 		<filter-class>br.com.caelum.vraptor.VRaptor</filter-class>
@@ -43,4 +16,17 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>REQUEST</dispatcher>
 	</filter-mapping>
+
+	<context-param>
+		<param-name>br.com.caelum.vraptor.packages</param-name>
+		<param-value>br.com.caelum.vraptor.util.jpa</param-value>
+	</context-param>
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<page-encoding>UTF-8</page-encoding>
+			<include-prelude>/WEB-INF/prelude.jspf</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
 </web-app>
