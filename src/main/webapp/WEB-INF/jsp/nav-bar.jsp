@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -8,22 +9,19 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Inicio</a></li>
-          <li><a href="#contact">Contato</a></li>
+          <li class="active"><a href="${linkTo[DashboardController].index}">Inicio</a></li>
+          <li><a href="${linkTo[DashboardController].criar}">Criar Pré-Demanda</a></li>
         </ul>
         <c:if test="${sessaoWeb.logado}">
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">${sessaoWeb.pessoa.nome} <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
               <li class="divider"></li>
-              <li><a href="${linkTo[IndexController].logout}">Logout</a></li>
+              <li><a href="${linkTo[IndexController].logout}">Sair</a></li>
             </ul></li>
         </ul>
         </c:if>
       </div>
-      <!--/.nav-collapse -->
     </div>
   </div>

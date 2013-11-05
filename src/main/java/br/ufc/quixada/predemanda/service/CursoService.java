@@ -14,6 +14,7 @@ import br.ufc.quixada.predemanda.util.URLRequestUtil.TypeRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+@Component
 public class CursoService {
 
 	private static final String URL_SERVICE = ConfigReader.getProperty("url_service") + "/cursos";
@@ -21,6 +22,18 @@ public class CursoService {
 	public Curso recuperarCurso(Long id) throws ConnectionException{
 		URLRequestUtil requestUtil = new URLRequestUtil();
 		requestUtil.setURL(URL_SERVICE + "/recuperarCurso/"+ Long.toString(id)).setTypeRequest(TypeRequest.POST);
+
+		String jsonResponse = requestUtil.execute();
+		
+		Gson gson = new Gson();
+
+		Curso curso = gson.fromJson(jsonResponse, Curso.class);
+		return curso;
+	}
+	
+	public Curso recuperarCursoDoCoordenador(Long id) throws ConnectionException{
+		URLRequestUtil requestUtil = new URLRequestUtil();
+		requestUtil.setURL(URL_SERVICE + "/recuperarCursoDoCoordenador/"+ Long.toString(id)).setTypeRequest(TypeRequest.POST);
 
 		String jsonResponse = requestUtil.execute();
 		

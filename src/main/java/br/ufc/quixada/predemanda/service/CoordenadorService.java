@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.quixada.predemanda.exception.ConnectionException;
 import br.ufc.quixada.predemanda.model.Coordenador;
 import br.ufc.quixada.predemanda.util.ConfigReader;
@@ -13,6 +14,7 @@ import br.ufc.quixada.predemanda.util.URLRequestUtil.TypeRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+@Component
 public class CoordenadorService {
 
 	private static final String URL_SERVICE = ConfigReader.getProperty("url_service") + "/coordenadores";

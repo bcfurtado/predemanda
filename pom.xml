@@ -22,17 +22,14 @@
 			<artifactId>vraptor</artifactId>
 			<version>3.5.2</version>
 		</dependency>
-<!-- 		<dependency>
-			<groupId>br.com.caelum.vraptor</groupId>
-			<artifactId>vraptor-jpa</artifactId>
-			<version>1.0.1</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>br.com.caelum.vraptor</groupId> <artifactId>vraptor-jpa</artifactId> 
+			<version>1.0.1</version> </dependency> -->
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 
 		<!-- JPA / Hibernate 4.0 -->
 		<dependency>
@@ -78,6 +75,7 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+
 	</dependencies>
 
 	<build>

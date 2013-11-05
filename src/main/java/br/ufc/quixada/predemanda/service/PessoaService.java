@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.quixada.predemanda.exception.ConnectionException;
 import br.ufc.quixada.predemanda.model.Pessoa;
 import br.ufc.quixada.predemanda.util.ConfigReader;
@@ -13,6 +14,7 @@ import br.ufc.quixada.predemanda.util.URLRequestUtil.TypeRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+@Component
 public class PessoaService {
 
 	private static final String URL_SERVICE = ConfigReader.getProperty("url_service") + "/pessoas";
@@ -54,7 +56,7 @@ public class PessoaService {
 			List<Pessoa> lista = service.listarPessoas();
 //			Pessoa pessoa = service.recuperarPessoa(new Long(1));
 			for (Pessoa pessoa: lista) {
-				System.out.println("Pessoa:" + pessoa.getId() + " - " +  pessoa.getNome());
+				System.out.println("Pessoa:" + pessoa.getLogin() + " - " +  pessoa.getSenha());
 			}
 		} catch (ConnectionException e) {
 			e.printStackTrace();

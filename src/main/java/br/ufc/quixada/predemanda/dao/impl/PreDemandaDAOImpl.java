@@ -7,6 +7,7 @@ import br.ufc.quixada.predemanda.dao.PreDemandaDAO;
 import br.ufc.quixada.predemanda.exception.DAOException;
 import br.ufc.quixada.predemanda.model.PreDemanda;
 
+@Component
 public class PreDemandaDAOImpl implements PreDemandaDAO {
 
 	@Override

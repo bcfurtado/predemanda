@@ -114,7 +114,7 @@ public class URLRequestUtil {
 		} catch (MalformedURLException e) {
 			throw new ConnectionException(e.getMessage());
 		} catch (IOException e) {
-			throw new ConnectionException(e.getMessage());
+			throw new ConnectionException("Erro de conexão. Não foi possivel se conectar ao servidor.");
 		}
 	}
 

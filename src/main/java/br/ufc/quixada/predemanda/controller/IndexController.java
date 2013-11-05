@@ -15,7 +15,7 @@ public class IndexController {
 	private SessaoWeb sessaoWeb;
 	private PessoaBO pessoaBO;
 	private final Result result;
-	
+
 	public IndexController(SessaoWeb sessaoWeb, PessoaBO pessoaBO, Result result) {
 		this.sessaoWeb = sessaoWeb;
 		this.pessoaBO = pessoaBO;
@@ -28,9 +28,9 @@ public class IndexController {
 	}
 	
 	@Post("/autenticar")
-	public void autenticar(String login, String senha){
+	public void autenticar(String email, String senha){
 		try {
-			Pessoa pessoa = pessoaBO.autenticar(login, senha);
+			Pessoa pessoa = pessoaBO.autenticar(email, senha);
 			sessaoWeb.login(pessoa);
 			result.redirectTo(DashboardController.class).index();
 		} catch (BusinessLogicException | ConnectionException e) {

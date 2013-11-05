@@ -61,13 +61,13 @@ public class Pessoa {
 		this.email = email;
 	}
 
-	public boolean isAluno() {
-		return aluno != null ? true : false;
-	}
-
-	public boolean isCoordenador() {
-		return coordenador != null ? true : false;
-	}
+//	public boolean isAluno() {
+//		return aluno != null ? true : false;
+//	}
+//
+//	public boolean isCoordenador() {
+//		return coordenador != null ? true : false;
+//	}
 
 	public Aluno getAluno() {
 		return aluno;
