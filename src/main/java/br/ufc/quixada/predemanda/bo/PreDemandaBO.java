@@ -1,31 +1,27 @@
 package br.ufc.quixada.predemanda.bo;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import br.com.caelum.vraptor.ioc.Component;
-import br.ufc.quixada.predemanda.controller.DashboardController;
 import br.ufc.quixada.predemanda.dao.PreDemandaDAO;
 import br.ufc.quixada.predemanda.exception.BusinessLogicException;
 import br.ufc.quixada.predemanda.exception.ConnectionException;
 import br.ufc.quixada.predemanda.exception.DAOException;
-import br.ufc.quixada.predemanda.model.Disciplina;
 import br.ufc.quixada.predemanda.model.PreDemanda;
-import br.ufc.quixada.predemanda.service.DisciplinaService;
 
 @Component
 public class PreDemandaBO {
 	
-	private DisciplinaService disciplinaService;
+//	private DisciplinaService disciplinaService;
 	private PreDemandaDAO preDemandaDAO;
 	
 	private static final Logger logger = Logger.getLogger(PreDemandaBO.class);
 	
-	public PreDemandaBO(DisciplinaService disciplinaService, PreDemandaDAO preDemandaDAO) {
-		this.disciplinaService = disciplinaService;
+	public PreDemandaBO(PreDemandaDAO preDemandaDAO) {
+//		this.disciplinaService = disciplinaService;
 		this.preDemandaDAO = preDemandaDAO;
 	}
 
@@ -51,19 +47,23 @@ public class PreDemandaBO {
 		preDemandaDAO.create(preDemanda);
 	}
 	
-	private List<Disciplina> carregarDisciplinas(List<Long> disciplinasIds) throws ConnectionException{
-		List<Disciplina> disciplinasBanco = new ArrayList<Disciplina>();
-		
-		List<Disciplina> disciplinasRemote = disciplinaService.listarDisciplinas();
-		for (Disciplina disciplina : disciplinasRemote) {
-			for (Long disciplinaId : disciplinasIds) {
-				if (disciplina.getId() == disciplinaId){
-					disciplinasBanco.add(disciplina);
-				}
-			}
-		}
-		
-		return disciplinasBanco;
+//	private List<Disciplina> carregarDisciplinas(List<Long> disciplinasIds) throws ConnectionException{
+//		List<Disciplina> disciplinasBanco = new ArrayList<Disciplina>();
+//		
+//		List<Disciplina> disciplinasRemote = disciplinaService.listarDisciplinas();
+//		for (Disciplina disciplina : disciplinasRemote) {
+//			for (Long disciplinaId : disciplinasIds) {
+//				if (disciplina.getId() == disciplinaId){
+//					disciplinasBanco.add(disciplina);
+//				}
+//			}
+//		}
+//		
+//		return disciplinasBanco;
+//	}
+
+	public List<PreDemanda> recuperarTodas() throws DAOException {
+		return preDemandaDAO.findAll();
 	}
 	
 }

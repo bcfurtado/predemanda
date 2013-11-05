@@ -11,6 +11,7 @@
         <ul class="nav navbar-nav">
           <li class="active"><a href="${linkTo[DashboardController].index}">Inicio</a></li>
           <li><a href="${linkTo[DashboardController].criar}">Criar Pré-Demanda</a></li>
+          <li><a href="${linkTo[DashboardController].listar}">Listar Pré-Demanda</a></li>
         </ul>
         <c:if test="${sessaoWeb.logado}">
         <ul class="nav navbar-nav navbar-right">

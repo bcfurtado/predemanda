@@ -74,7 +74,16 @@ public class DashboardController {
 			result.include("erro",e.getMessage());
 			result.forwardTo(this).criar();
 		}
-
+	}
+	
+	@Path("/dashboard/listar")
+	public void listar(){
+		try {
+			result.include("predemandas", predemandaBO.recuperarTodas());
+		} catch (DAOException e) {
+			result.include("erro",e.getMessage());
+			result.forwardTo(this).index();
+		}
 	}
 	
 }

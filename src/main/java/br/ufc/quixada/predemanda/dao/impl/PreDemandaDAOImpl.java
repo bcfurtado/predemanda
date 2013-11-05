@@ -3,6 +3,7 @@ package br.ufc.quixada.predemanda.dao.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.quixada.predemanda.dao.PreDemandaDAO;
@@ -35,10 +36,11 @@ public class PreDemandaDAOImpl implements PreDemandaDAO {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<PreDemanda> findAll() throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = em.createQuery("select p from PreDemanda as p order by dataDaCriacao desc");
+		return query.getResultList();
 	}
 
 	@Override
