@@ -61,8 +61,12 @@ public class DashboardController {
 	public void criar(PreDemanda preDemanda, List<Long> disciplinas){
 		try {
 			Curso curso = cursoBO.recuperarPeloIdCoordenador(sessaoWeb.getPessoa().getId());
-			preDemanda.setCurso(curso);
-			preDemanda.setCoordenador(sessaoWeb.getPessoa().getCoordenador());
+			
+			preDemanda.setCursoId(curso.getId());
+			preDemanda.setCursoNome(curso.getNomeCurso());
+			preDemanda.setCoordenadorId(sessaoWeb.getPessoa().getCoordenador().getId());
+			preDemanda.setCoordenadorNome(sessaoWeb.getPessoa().getNome());
+			
 			predemandaBO.criarPreDemanda(preDemanda, disciplinas);
 			result.include("msg","Pré-Demanda cadastrada com sucesso.");
 			result.forwardTo(this).index();

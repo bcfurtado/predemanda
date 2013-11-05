@@ -1,13 +1,7 @@
 package br.ufc.quixada.predemanda.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
-@Entity
 public class Pessoa {
 
-	@Id
 	private Long id;
 	
 	private String nome;
@@ -15,10 +9,8 @@ public class Pessoa {
 	private String senha;
 	private String email;
 	
-	@OneToOne
 	private Aluno aluno;
 	
-	@OneToOne
 	private Coordenador coordenador;
 	
 	public Long getId() {

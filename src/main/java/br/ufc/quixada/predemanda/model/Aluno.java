@@ -1,12 +1,8 @@
 package br.ufc.quixada.predemanda.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
-@Entity
 public class Aluno {
 
-	@Id
 	private Long id;
 	
 	private String matricula;

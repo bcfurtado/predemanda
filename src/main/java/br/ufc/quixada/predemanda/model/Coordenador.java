@@ -1,18 +1,10 @@
 package br.ufc.quixada.predemanda.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="coodenador")
 public class Coordenador {
 
-	@Id
 	private Long id;
-	
-	@Column(name="siape")
+
 	private String siape;
 
 	public Long getId() {

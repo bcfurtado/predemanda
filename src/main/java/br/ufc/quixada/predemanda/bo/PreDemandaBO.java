@@ -41,7 +41,8 @@ public class PreDemandaBO {
 		}
 		
 		preDemanda.setDataDaCriacao(new Date());
-		preDemanda.setDisciplinas(carregarDisciplinas(disciplinas));
+		preDemanda.setDisciplinas(disciplinas);
+//		preDemanda.setDisciplinas(carregarDisciplinas(disciplinas));
 
 		logger.debug("Data Inicio: " + preDemanda.getDataInicio());
 		logger.debug("Data Fim: " + preDemanda.getDataFim());

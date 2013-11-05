@@ -3,37 +3,33 @@ package br.ufc.quixada.predemanda.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="predemanda")
+@Table(name = "predemanda")
 public class PreDemanda {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id;
-	
-	@ManyToOne
-	private Coordenador coordenador;
-	
-	@ManyToOne
-	private Curso curso;
-	
-	@ManyToMany
-	private List<Disciplina> disciplinas;
-	
-	@Column(name="data_criacao")
+
+	private Long coordenadorId;
+	private String coordenadorNome;
+
+	private Long cursoId;
+	private String cursoNome;
+
+	@ElementCollection
+	private List<Long> disciplinas;
+
 	private Date dataDaCriacao;
 
-	@Column(name="data_inicio")
 	private Date dataInicio;
-	
-	@Column(name="data_fim")
+
 	private Date dataFim;
 
 	public Long getId() {
@@ -44,27 +40,43 @@ public class PreDemanda {
 		this.id = id;
 	}
 
-	public Coordenador getCoordenador() {
-		return coordenador;
+	public Long getCoordenadorId() {
+		return coordenadorId;
 	}
 
-	public void setCoordenador(Coordenador coordenador) {
-		this.coordenador = coordenador;
+	public void setCoordenadorId(Long coordenadorId) {
+		this.coordenadorId = coordenadorId;
 	}
 
-	public Curso getCurso() {
-		return curso;
+	public String getCoordenadorNome() {
+		return coordenadorNome;
 	}
 
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setCoordenadorNome(String coordenadorNome) {
+		this.coordenadorNome = coordenadorNome;
 	}
 
-	public List<Disciplina> getDisciplinas() {
+	public Long getCursoId() {
+		return cursoId;
+	}
+
+	public void setCursoId(Long cursoId) {
+		this.cursoId = cursoId;
+	}
+
+	public String getCursoNome() {
+		return cursoNome;
+	}
+
+	public void setCursoNome(String cursoNome) {
+		this.cursoNome = cursoNome;
+	}
+
+	public List<Long> getDisciplinas() {
 		return disciplinas;
 	}
 
-	public void setDisciplinas(List<Disciplina> disciplinas) {
+	public void setDisciplinas(List<Long> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
 

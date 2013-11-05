@@ -1,21 +1,12 @@
 package br.ufc.quixada.predemanda.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name="disciplina")
 public class Disciplina {
 
-	@Id
 	private Long id;
 
-	@Column(name = "codigo")
 	private String codigo;
 
-	@Column(name = "nome")
 	private String nome;
 
 	public Long getId() {
