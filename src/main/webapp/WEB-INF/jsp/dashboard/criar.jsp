@@ -8,14 +8,14 @@
 <title>Criar PreDemanda - Oráculo</title>
   
   <!-- header -->
-  <jsp:include page="../header.jsp"/>
+  <%@ include file="../header.jsp" %>
+
 </head>
 
 <body>
 
   <!-- nav-bar -->
-  <jsp:include page="../nav-bar.jsp"/>
-  
+  <%@ include file="../nav-bar.jsp" %>
   <div class="container">
 
     <div class="starter-template">
