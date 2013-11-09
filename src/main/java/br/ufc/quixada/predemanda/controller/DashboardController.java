@@ -19,7 +19,6 @@ import br.ufc.quixada.predemanda.model.Curso;
 import br.ufc.quixada.predemanda.model.Disciplina;
 import br.ufc.quixada.predemanda.model.PreDemanda;
 
-
 @Resource
 public class DashboardController {
 
@@ -82,6 +81,21 @@ public class DashboardController {
 			result.include("predemandas", predemandaBO.recuperarTodas());
 		} catch (DAOException e) {
 			result.include("erro",e.getMessage());
+			result.forwardTo(this).index();
+		}
+	}
+	
+	@Path("/dashboard/visualizar/{id}")
+	public void visualizar(Long id){
+		try {
+			PreDemanda predemanda = predemandaBO.recuperarPeloId(id);
+			List<Disciplina> disciplinas = disciplinaBO.recuperarDisciplinas(predemanda.getDisciplinas());
+			
+			result.include("predemanda", predemanda);
+			result.include("disciplinas", disciplinas);
+		} catch (DAOException | ConnectionException e) {
+			result.include("erro",e.getMessage());
+			e.printStackTrace();
 			result.forwardTo(this).index();
 		}
 	}

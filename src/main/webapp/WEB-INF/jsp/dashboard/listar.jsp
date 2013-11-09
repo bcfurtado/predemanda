@@ -42,6 +42,7 @@
             <th>Inicio</th>
             <th>Fim</th>
             <th>Criação</th>
+            <th></th>
           </tr>
           <c:forEach items="${predemandas}" var="predemanda">
             <tr>
@@ -50,6 +51,7 @@
               <td><fmt:formatDate value="${predemanda.dataInicio}" pattern="dd/MM/yyyy"/></td>
               <td><fmt:formatDate value="${predemanda.dataFim}" pattern="dd/MM/yyyy"/></td>
               <td><fmt:formatDate value="${predemanda.dataDaCriacao}" pattern="dd/MM/yyyy"/></td>
+              <td><a href="${linkTo[DashboardController].visualizar[predemanda.id]}">Visualizar</a></td>
             </tr>
           </c:forEach>
         </table>

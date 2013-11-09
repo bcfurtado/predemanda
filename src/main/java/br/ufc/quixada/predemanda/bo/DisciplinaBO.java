@@ -1,5 +1,6 @@
 package br.ufc.quixada.predemanda.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.caelum.vraptor.ioc.Component;
@@ -24,6 +25,21 @@ public class DisciplinaBO {
 	public List<Disciplina> recuperarTodas() throws ConnectionException{
 		List<Disciplina> disciplinas = disciplinaService.listarDisciplinas();
 		return disciplinas;
+	}
+
+	public List<Disciplina> recuperarDisciplinas(List<Long> idDisciplinas) throws ConnectionException {
+		List<Disciplina> disciplinasServico = recuperarTodas();
+		List<Disciplina> disciplinasLocal = new ArrayList<Disciplina>();
+
+		for (Disciplina disciplina : disciplinasServico) {
+			for (Long id : idDisciplinas) {
+				if (disciplina.getId() == id){
+					disciplinasLocal.add(disciplina);
+				}
+			}
+		}
+		
+		return disciplinasLocal;
 	}
 	
 }

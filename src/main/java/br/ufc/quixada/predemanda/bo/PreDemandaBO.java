@@ -66,4 +66,8 @@ public class PreDemandaBO {
 		return preDemandaDAO.findAll();
 	}
 	
+	public PreDemanda recuperarPeloId(Long id) throws DAOException {
+		return preDemandaDAO.findById(id);
+	}
+	
 }
