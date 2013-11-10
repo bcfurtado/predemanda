@@ -18,7 +18,6 @@
 
       <div class="starter-template">
         <h1>Bem Vindo</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
         
         <c:if test="${not empty msg }">
           <div data-dismiss="alert" class="alert alert-info"><p>${msg}</p></div>
@@ -27,9 +26,60 @@
           <div data-dismiss="alert" class="alert alert-danger"><p>${erro}</p></div>
         </c:if>
 
+        <p class="lead">Pré-Demandas Abertas</p>
+        
+        <div class="col-sm-12">
+          <table class="table table-hover">
+            <tr>
+              <th>Coordenador</th>
+              <th>Curso</th>
+              <th>Inicio</th>
+              <th>Fim</th>
+              <th>Criação</th>
+              <th></th>
+            </tr>
+            <c:forEach items="${predemandasAbertas}" var="predemanda">
+              <tr>
+                <td>${predemanda.coordenadorNome}</td>
+                <td>${predemanda.cursoNome}</td>
+                <td><fmt:formatDate value="${predemanda.dataInicio}" pattern="dd/MM/yyyy"/></td>
+                <td><fmt:formatDate value="${predemanda.dataFim}" pattern="dd/MM/yyyy"/></td>
+                <td><fmt:formatDate value="${predemanda.dataDaCriacao}" pattern="dd/MM/yyyy"/></td>
+                <td><a href="${linkTo[DashboardController].visualizar[predemanda.id]}">Visualizar</a></td>
+              </tr>
+            </c:forEach>
+          </table>
+        </div>
+          
+        <p class="lead">Pré-Demandas Fechadas</p>
+          
+        <div class="col-sm-12">
+          <table class="table table-hover">
+            <tr>
+              <th>Coordenador</th>
+              <th>Curso</th>
+              <th>Inicio</th>
+              <th>Fim</th>
+              <th>Criação</th>
+              <th></th>
+            </tr>
+            <c:forEach items="${predemandasFechadas}" var="predemanda">
+              <tr>
+                <td>${predemanda.coordenadorNome}</td>
+                <td>${predemanda.cursoNome}</td>
+                <td><fmt:formatDate value="${predemanda.dataInicio}" pattern="dd/MM/yyyy"/></td>
+                <td><fmt:formatDate value="${predemanda.dataFim}" pattern="dd/MM/yyyy"/></td>
+                <td><fmt:formatDate value="${predemanda.dataDaCriacao}" pattern="dd/MM/yyyy"/></td>
+                <td><a href="${linkTo[DashboardController].visualizar[predemanda.id]}">Visualizar</a></td>
+              </tr>
+            </c:forEach>
+          </table>
+        </div>
+          
+
       </div>
   
-    </div><!-- /.container -->
+    </div><!-- /.container -->l
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>

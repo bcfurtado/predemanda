@@ -48,6 +48,23 @@ public class AlunoService {
 		return lista;
 	}
 	
+	public List<Aluno> recuperarAlunosDoCurso(Long idCurso) throws ConnectionException{
+		URLRequestUtil requestUtil = new URLRequestUtil();
+		requestUtil.setURL(URL_SERVICE + "/recuperarAlunosDoCurso/" + idCurso).setTypeRequest(TypeRequest.POST);
+		
+		String jsonResponse = requestUtil.execute();
+		
+		Gson gson = new Gson();
+		Type colletionType = new TypeToken<Aluno[]>(){}.getType();
+
+		Aluno[] alunos = gson.fromJson(jsonResponse, colletionType);
+		List<Aluno> lista = new ArrayList<Aluno>();
+		for (Aluno aluno : alunos) {
+			lista.add(aluno);
+		}
+		return lista;
+	}
+	
 	
 	public static void main(String args[]){
 		AlunoService service = new AlunoService();

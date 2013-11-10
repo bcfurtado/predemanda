@@ -24,7 +24,9 @@ public class IndexController {
 
 	@Path("/")	//Login
 	public void index() {
-		result.include("var", "Minha Var!");
+		if (sessaoWeb.isLogado()){
+			result.redirectTo(DashboardController.class).index();			
+		}
 	}
 	
 	@Post("/autenticar")
@@ -32,6 +34,9 @@ public class IndexController {
 		try {
 			Pessoa pessoa = pessoaBO.autenticar(email, senha);
 			sessaoWeb.login(pessoa);
+			if ( !sessaoWeb.isAluno() && !sessaoWeb.isCoordenador() ){
+				throw new BusinessLogicException("Esse nivel de usuário não tem acesso ao sistema.");
+			}
 			result.redirectTo(DashboardController.class).index();
 		} catch (BusinessLogicException | ConnectionException e) {
 			result.include("erro", e.getMessage());

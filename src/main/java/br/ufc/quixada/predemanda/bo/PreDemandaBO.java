@@ -10,18 +10,17 @@ import br.ufc.quixada.predemanda.dao.PreDemandaDAO;
 import br.ufc.quixada.predemanda.exception.BusinessLogicException;
 import br.ufc.quixada.predemanda.exception.ConnectionException;
 import br.ufc.quixada.predemanda.exception.DAOException;
+import br.ufc.quixada.predemanda.model.Curso;
 import br.ufc.quixada.predemanda.model.PreDemanda;
 
 @Component
 public class PreDemandaBO {
 	
-//	private DisciplinaService disciplinaService;
 	private PreDemandaDAO preDemandaDAO;
 	
 	private static final Logger logger = Logger.getLogger(PreDemandaBO.class);
 	
 	public PreDemandaBO(PreDemandaDAO preDemandaDAO) {
-//		this.disciplinaService = disciplinaService;
 		this.preDemandaDAO = preDemandaDAO;
 	}
 
@@ -38,7 +37,6 @@ public class PreDemandaBO {
 		
 		preDemanda.setDataDaCriacao(new Date());
 		preDemanda.setDisciplinas(disciplinas);
-//		preDemanda.setDisciplinas(carregarDisciplinas(disciplinas));
 
 		logger.debug("Data Inicio: " + preDemanda.getDataInicio());
 		logger.debug("Data Fim: " + preDemanda.getDataFim());
@@ -47,27 +45,20 @@ public class PreDemandaBO {
 		preDemandaDAO.create(preDemanda);
 	}
 	
-//	private List<Disciplina> carregarDisciplinas(List<Long> disciplinasIds) throws ConnectionException{
-//		List<Disciplina> disciplinasBanco = new ArrayList<Disciplina>();
-//		
-//		List<Disciplina> disciplinasRemote = disciplinaService.listarDisciplinas();
-//		for (Disciplina disciplina : disciplinasRemote) {
-//			for (Long disciplinaId : disciplinasIds) {
-//				if (disciplina.getId() == disciplinaId){
-//					disciplinasBanco.add(disciplina);
-//				}
-//			}
-//		}
-//		
-//		return disciplinasBanco;
-//	}
+	public PreDemanda recuperarPeloId(Long id) throws DAOException {
+		return preDemandaDAO.findById(id);
+	}
 
 	public List<PreDemanda> recuperarTodas() throws DAOException {
 		return preDemandaDAO.findAll();
 	}
 	
-	public PreDemanda recuperarPeloId(Long id) throws DAOException {
-		return preDemandaDAO.findById(id);
+	public List<PreDemanda> recuperarTodasDoCurso(Curso curso) throws DAOException{
+		return preDemandaDAO.findByCurso(curso.getId());
 	}
-	
+
+	public List<PreDemanda> recuperarTodasDoCursoAbertas(Curso curso) throws DAOException{
+		return preDemandaDAO.findByCursoAndOpen(curso.getId(), new Date());
+	}
+
 }

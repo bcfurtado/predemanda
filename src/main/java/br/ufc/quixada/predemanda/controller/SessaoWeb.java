@@ -25,5 +25,13 @@ public class SessaoWeb {
 	public void logout() {
 		this.pessoa = null;
 	}
+	
+	public boolean isAluno() {
+		return pessoa.getAluno().getId() != null;
+	}
+
+	public boolean isCoordenador() {
+		return pessoa.getCoordenador().getId() != null;
+	}
 
 }

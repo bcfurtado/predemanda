@@ -31,9 +31,9 @@ public class CursoService {
 		return curso;
 	}
 	
-	public Curso recuperarCursoDoCoordenador(Long id) throws ConnectionException{
+	public Curso recuperarCursoDoCoordenador(Long idCoordenador) throws ConnectionException{
 		URLRequestUtil requestUtil = new URLRequestUtil();
-		requestUtil.setURL(URL_SERVICE + "/recuperarCursoDoCoordenador/"+ Long.toString(id)).setTypeRequest(TypeRequest.POST);
+		requestUtil.setURL(URL_SERVICE + "/recuperarCursoDoCoordenador/"+ Long.toString(idCoordenador)).setTypeRequest(TypeRequest.POST);
 
 		String jsonResponse = requestUtil.execute();
 		
@@ -43,6 +43,18 @@ public class CursoService {
 		return curso;
 	}
 	
+	public Curso recuperarCursoDoAluno(Long idAluno) throws ConnectionException {
+		URLRequestUtil requestUtil = new URLRequestUtil();
+		requestUtil.setURL(URL_SERVICE + "/recuperarCursoDoAluno/"+ Long.toString(idAluno)).setTypeRequest(TypeRequest.POST);
+
+		String jsonResponse = requestUtil.execute();
+		
+		Gson gson = new Gson();
+
+		Curso curso = gson.fromJson(jsonResponse, Curso.class);
+		return curso;
+	}
+
 	public List<Curso> listarCursos() throws ConnectionException{
 		URLRequestUtil requestUtil = new URLRequestUtil();
 		requestUtil.setURL(URL_SERVICE + "/listarCursos").setTypeRequest(TypeRequest.POST);
@@ -73,4 +85,5 @@ public class CursoService {
 		}
 
 	}
+
 }

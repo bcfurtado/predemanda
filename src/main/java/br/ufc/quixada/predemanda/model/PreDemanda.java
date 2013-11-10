@@ -103,5 +103,10 @@ public class PreDemanda {
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return (this.id == ((PreDemanda)obj).getId());
+	}
 
 }

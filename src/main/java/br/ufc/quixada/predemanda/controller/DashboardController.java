@@ -40,7 +40,27 @@ public class DashboardController {
 
 	@Path("/dashboard")
 	public void index() {
-		result.include("var", "Minha Var!");
+		try {
+			Curso curso = null;
+			if (sessaoWeb.isAluno()){
+				curso = cursoBO.recuperarPeloAluno(sessaoWeb.getPessoa().getId());
+				logger.debug("Curso do aluno: " + curso.getId() + " - " + curso.getNomeCurso());
+			} else {
+				curso = cursoBO.recuperarPeloIdCoordenador(sessaoWeb.getPessoa().getId());
+				logger.debug("Curso do coordenador: " + curso.getId() + " - " + curso.getNomeCurso());
+			}
+			
+			List<PreDemanda> predemandasAbertas = predemandaBO.recuperarTodasDoCursoAbertas(curso);
+			List<PreDemanda> preDemandasFechadas = predemandaBO.recuperarTodasDoCurso(curso);
+			preDemandasFechadas.removeAll(predemandasAbertas);
+			
+			result.include("predemandasAbertas", predemandasAbertas);
+			result.include("predemandasFechadas", preDemandasFechadas);
+			
+		} catch (ConnectionException | DAOException e) {
+			result.include("erro", e.getMessage());
+			result.redirectTo(this).index();
+		}
 	}
 	
 	@Get("/dashboard/criar")

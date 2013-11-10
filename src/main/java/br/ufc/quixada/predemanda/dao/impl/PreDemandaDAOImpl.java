@@ -1,5 +1,6 @@
 package br.ufc.quixada.predemanda.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import br.ufc.quixada.predemanda.dao.PreDemandaDAO;
 import br.ufc.quixada.predemanda.exception.DAOException;
 import br.ufc.quixada.predemanda.model.PreDemanda;
 
+@SuppressWarnings("unchecked")
 @Component
 public class PreDemandaDAOImpl implements PreDemandaDAO {
 
@@ -43,10 +45,9 @@ public class PreDemandaDAOImpl implements PreDemandaDAO {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<PreDemanda> findAll() throws DAOException {
-		Query query = em.createQuery("select p from PreDemanda as p order by dataDaCriacao desc");
+		Query query = em.createQuery("select p from PreDemanda as p order by p.dataDaCriacao desc");
 		return query.getResultList();
 	}
 
@@ -55,6 +56,19 @@ public class PreDemandaDAOImpl implements PreDemandaDAO {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public List<PreDemanda> findByCurso(Long idCurso) throws DAOException {
+		Query query = em.createQuery("select p from PreDemanda as p where p.cursoId = :curso order by p.dataDaCriacao DESC");
+		query.setParameter("curso", idCurso);
+		return query.getResultList();
+	}
 
+	public List<PreDemanda> findByCursoAndOpen(Long idCurso, Date hoje){
+		Query query = em.createQuery("select p from PreDemanda as p where :data >= p.dataInicio and :data <= p.dataFim and p.cursoId = :curso order by p.dataDaCriacao DESC");
+		query.setParameter("data", hoje);
+		query.setParameter("curso", idCurso);
+		return query.getResultList();
+	}
 
 }
