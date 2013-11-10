@@ -45,7 +45,14 @@
                 <td><fmt:formatDate value="${predemanda.dataInicio}" pattern="dd/MM/yyyy"/></td>
                 <td><fmt:formatDate value="${predemanda.dataFim}" pattern="dd/MM/yyyy"/></td>
                 <td><fmt:formatDate value="${predemanda.dataDaCriacao}" pattern="dd/MM/yyyy"/></td>
-                <td><a href="${linkTo[DashboardController].visualizar[predemanda.id]}">Visualizar</a></td>
+                <c:choose>
+                 <c:when test="${sessaoWeb.aluno}">
+                  <td><a href="${linkTo[DashboardController].responder[predemanda.id]}">Responder</a></td>
+                 </c:when>
+                 <c:otherwise>
+                  <td><a href="${linkTo[DashboardController].visualizar[predemanda.id]}">Visualizar</a></td>
+                 </c:otherwise>
+                </c:choose>
               </tr>
             </c:forEach>
           </table>

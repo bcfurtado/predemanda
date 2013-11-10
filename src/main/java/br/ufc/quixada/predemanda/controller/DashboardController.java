@@ -12,12 +12,14 @@ import br.com.caelum.vraptor.Result;
 import br.ufc.quixada.predemanda.bo.CursoBO;
 import br.ufc.quixada.predemanda.bo.DisciplinaBO;
 import br.ufc.quixada.predemanda.bo.PreDemandaBO;
+import br.ufc.quixada.predemanda.bo.RespostaBO;
 import br.ufc.quixada.predemanda.exception.BusinessLogicException;
 import br.ufc.quixada.predemanda.exception.ConnectionException;
 import br.ufc.quixada.predemanda.exception.DAOException;
 import br.ufc.quixada.predemanda.model.Curso;
 import br.ufc.quixada.predemanda.model.Disciplina;
 import br.ufc.quixada.predemanda.model.PreDemanda;
+import br.ufc.quixada.predemanda.model.Resposta;
 
 @Resource
 public class DashboardController {
@@ -27,15 +29,17 @@ public class DashboardController {
 	private CursoBO cursoBO;
 	private DisciplinaBO disciplinaBO;
 	private PreDemandaBO predemandaBO;
+	private RespostaBO respostaBO;
 			
 	private static final Logger logger = Logger.getLogger(DashboardController.class);
 
-	public DashboardController(Result result, SessaoWeb sessaoWeb,CursoBO cursoBO, DisciplinaBO disciplinaBO, PreDemandaBO predemandaBO) {
+	public DashboardController(Result result, SessaoWeb sessaoWeb,CursoBO cursoBO, DisciplinaBO disciplinaBO, PreDemandaBO predemandaBO, RespostaBO respostaBO) {
 		this.result = result;
 		this.sessaoWeb = sessaoWeb;
 		this.cursoBO = cursoBO;
 		this.disciplinaBO = disciplinaBO;
 		this.predemandaBO = predemandaBO;
+		this.respostaBO = respostaBO;
 	}
 
 	@Path("/dashboard")
@@ -115,9 +119,39 @@ public class DashboardController {
 			result.include("disciplinas", disciplinas);
 		} catch (DAOException | ConnectionException e) {
 			result.include("erro",e.getMessage());
-			e.printStackTrace();
 			result.forwardTo(this).index();
 		}
 	}
 	
+	@Get("/dashboard/responder/{id}")
+	public void responder(Long id){
+		try {
+			PreDemanda predemanda = predemandaBO.recuperarPeloId(id);
+			List<Disciplina> disciplinas = disciplinaBO.recuperarDisciplinas(predemanda.getDisciplinas());
+			
+			result.include("predemanda", predemanda);
+			result.include("disciplinas", disciplinas);
+		} catch (DAOException | ConnectionException e) {
+			result.include("erro",e.getMessage());
+			result.forwardTo(this).index();
+		}
+	}
+	
+	@Post("/dashboard/responder")
+	public void salvarResposta(Resposta resposta, List<Long> disciplinas){
+		try {
+			resposta.setIdAluno(sessaoWeb.getPessoa().getId());
+			resposta.setDisciplinas(disciplinas);
+			logger.debug("PreDemanda id " + resposta.getPreDemanda().getId());
+			
+			respostaBO.salvarResposta(resposta);
+		
+			result.include("msg","Pré-Demanda respondida com sucesso.");
+			result.forwardTo(this).index();
+
+		} catch (DAOException e) {
+			result.include("erro",e.getMessage());
+			result.forwardTo(this).index();
+		}
+	}
 }
