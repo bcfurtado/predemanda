@@ -1,5 +1,7 @@
 package br.ufc.quixada.predemanda.bo;
 
+import java.util.List;
+
 import br.com.caelum.vraptor.ioc.Component;
 import br.ufc.quixada.predemanda.dao.RespostaDAO;
 import br.ufc.quixada.predemanda.exception.DAOException;
@@ -16,6 +18,10 @@ public class RespostaBO {
 
 	public void salvarResposta(Resposta resposta) throws DAOException {
 		respostaDAO.create(resposta);
+	}
+	
+	public List<Resposta> recuperarRespostassDaPreDemanda(Long id) throws DAOException{
+		return respostaDAO.findByPreDemanda(id);
 	}
 	
 }

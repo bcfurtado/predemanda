@@ -1,5 +1,6 @@
 package br.ufc.quixada.predemanda.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -48,16 +49,32 @@ public class DashboardController {
 			Curso curso = null;
 			if (sessaoWeb.isAluno()){
 				curso = cursoBO.recuperarPeloAluno(sessaoWeb.getPessoa().getId());
-				logger.debug("Curso do aluno: " + curso.getId() + " - " + curso.getNomeCurso());
 			} else {
 				curso = cursoBO.recuperarPeloIdCoordenador(sessaoWeb.getPessoa().getId());
-				logger.debug("Curso do coordenador: " + curso.getId() + " - " + curso.getNomeCurso());
 			}
 			
 			List<PreDemanda> predemandasAbertas = predemandaBO.recuperarTodasDoCursoAbertas(curso);
 			List<PreDemanda> preDemandasFechadas = predemandaBO.recuperarTodasDoCurso(curso);
 			preDemandasFechadas.removeAll(predemandasAbertas);
+
+			predemandasAbertas = predemandaBO.recuperarTodasDoCursoAbertas(curso);
+			preDemandasFechadas = predemandaBO.recuperarTodasDoCurso(curso);
+			preDemandasFechadas.removeAll(predemandasAbertas);
 			
+			Iterator<PreDemanda> itPreDemanda = predemandasAbertas.iterator();
+			while(itPreDemanda.hasNext()){
+				PreDemanda preDemanda = itPreDemanda.next();
+				Iterator<Resposta> itResposta = respostaBO.recuperarRespostassDaPreDemanda(preDemanda.getId()).iterator();
+				while (itResposta.hasNext()) {
+					Resposta resposta = itResposta.next();
+					if(resposta.getIdAluno() == sessaoWeb.getPessoa().getId()){
+						preDemandasFechadas.add(preDemanda);
+						itPreDemanda.remove();
+						break;
+					}
+				}
+			}
+				
 			result.include("predemandasAbertas", predemandasAbertas);
 			result.include("predemandasFechadas", preDemandasFechadas);
 			
