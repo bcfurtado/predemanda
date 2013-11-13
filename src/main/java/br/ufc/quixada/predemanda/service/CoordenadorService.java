@@ -27,8 +27,7 @@ public class CoordenadorService {
 		
 		Gson gson = new Gson();
 
-		Coordenador coordenador = gson.fromJson(jsonResponse, Coordenador.class);
-		return coordenador;
+		return gson.fromJson(jsonResponse, Coordenador.class);
 	}
 	
 	public List<Coordenador> listarCoordenadores() throws ConnectionException{
@@ -48,17 +47,4 @@ public class CoordenadorService {
 		return lista;
 	}
 	
-	
-	public static void main(String args[]){
-		CoordenadorService service = new CoordenadorService();
-		try {
-			List<Coordenador> coordenadores = service.listarCoordenadores();
-			for (Coordenador coordenador : coordenadores) {
-				System.out.println("Coordenador:" +  coordenador.getSiape());
-			}
-		} catch (ConnectionException e) {
-			e.printStackTrace();
-		}
-
-	}
 }

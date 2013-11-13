@@ -27,8 +27,7 @@ public class CursoService {
 		
 		Gson gson = new Gson();
 
-		Curso curso = gson.fromJson(jsonResponse, Curso.class);
-		return curso;
+		return gson.fromJson(jsonResponse, Curso.class);
 	}
 	
 	public Curso recuperarCursoDoCoordenador(Long idCoordenador) throws ConnectionException{
@@ -39,8 +38,7 @@ public class CursoService {
 		
 		Gson gson = new Gson();
 
-		Curso curso = gson.fromJson(jsonResponse, Curso.class);
-		return curso;
+		return gson.fromJson(jsonResponse, Curso.class);
 	}
 	
 	public Curso recuperarCursoDoAluno(Long idAluno) throws ConnectionException {
@@ -51,8 +49,7 @@ public class CursoService {
 		
 		Gson gson = new Gson();
 
-		Curso curso = gson.fromJson(jsonResponse, Curso.class);
-		return curso;
+		return gson.fromJson(jsonResponse, Curso.class);
 	}
 
 	public List<Curso> listarCursos() throws ConnectionException{
@@ -72,18 +69,4 @@ public class CursoService {
 		return lista;
 	}
 	
-	
-	public static void main(String args[]){
-		CursoService service = new CursoService();
-		try {
-			List<Curso> cursos = service.listarCursos();
-			for (Curso curso: cursos) {
-				System.out.println("Curso:" +  curso.getNomeCurso() );
-			}
-		} catch (ConnectionException e) {
-			e.printStackTrace();
-		}
-
-	}
-
 }

@@ -22,7 +22,7 @@ public class IndexController {
 		this.result = result;
 	}
 
-	@Path("/")	//Login
+	@Path("/")
 	public void index() {
 		if (sessaoWeb.isLogado()){
 			result.redirectTo(DashboardController.class).index();			

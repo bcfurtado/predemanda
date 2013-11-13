@@ -27,8 +27,7 @@ public class PessoaService {
 		
 		Gson gson = new Gson();
 
-		Pessoa pessoa = gson.fromJson(jsonResponse, Pessoa.class);
-		return pessoa;
+		return gson.fromJson(jsonResponse, Pessoa.class);
 	}
 	
 	
@@ -47,21 +46,6 @@ public class PessoaService {
 			lista.add(pessoa);
 		}
 		return lista;
-	}
-	
-	
-	public static void main(String args[]){
-		PessoaService service = new PessoaService();
-		try {
-			List<Pessoa> lista = service.listarPessoas();
-//			Pessoa pessoa = service.recuperarPessoa(new Long(1));
-			for (Pessoa pessoa: lista) {
-				System.out.println("Pessoa:" + pessoa.getLogin() + " - " +  pessoa.getSenha());
-			}
-		} catch (ConnectionException e) {
-			e.printStackTrace();
-		}
-
 	}
 	
 }

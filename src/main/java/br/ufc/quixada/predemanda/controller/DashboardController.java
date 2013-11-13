@@ -32,8 +32,11 @@ public class DashboardController {
 	private PreDemandaBO predemandaBO;
 	private RespostaBO respostaBO;
 			
-	private static final Logger logger = Logger.getLogger(DashboardController.class);
+	private static Logger logger = Logger.getLogger(DashboardController.class);
 
+	private static final String ERRO = "erro";
+	private static final String MENSAGEM = "msg";
+	
 	public DashboardController(Result result, SessaoWeb sessaoWeb,CursoBO cursoBO, DisciplinaBO disciplinaBO, PreDemandaBO predemandaBO, RespostaBO respostaBO) {
 		this.result = result;
 		this.sessaoWeb = sessaoWeb;
@@ -79,7 +82,7 @@ public class DashboardController {
 			result.include("predemandasFechadas", preDemandasFechadas);
 			
 		} catch (ConnectionException | DAOException e) {
-			result.include("erro", e.getMessage());
+			result.include(ERRO, e.getMessage());
 			result.redirectTo(this).index();
 		}
 	}
@@ -92,7 +95,7 @@ public class DashboardController {
 			result.include("curso", curso);
 			result.include("disciplinas",disciplinas);
 		} catch (ConnectionException e) {
-			result.include("erro", e.getMessage());
+			result.include(ERRO, e.getMessage());
 			result.redirectTo(this).index();
 		}
 	}
@@ -108,10 +111,10 @@ public class DashboardController {
 			preDemanda.setCoordenadorNome(sessaoWeb.getPessoa().getNome());
 			
 			predemandaBO.criarPreDemanda(preDemanda, disciplinas);
-			result.include("msg","Pré-Demanda cadastrada com sucesso.");
+			result.include(MENSAGEM,"Pré-Demanda cadastrada com sucesso.");
 			result.forwardTo(this).index();
 		} catch (BusinessLogicException | ConnectionException | DAOException e) {
-			result.include("erro",e.getMessage());
+			result.include(ERRO,e.getMessage());
 			result.forwardTo(this).criar();
 		}
 	}
@@ -121,7 +124,7 @@ public class DashboardController {
 		try {
 			result.include("predemandas", predemandaBO.recuperarTodas());
 		} catch (DAOException e) {
-			result.include("erro",e.getMessage());
+			result.include(ERRO,e.getMessage());
 			result.forwardTo(this).index();
 		}
 	}
@@ -135,7 +138,7 @@ public class DashboardController {
 			result.include("predemanda", predemanda);
 			result.include("disciplinas", disciplinas);
 		} catch (DAOException | ConnectionException e) {
-			result.include("erro",e.getMessage());
+			result.include(ERRO,e.getMessage());
 			result.forwardTo(this).index();
 		}
 	}
@@ -149,7 +152,7 @@ public class DashboardController {
 			result.include("predemanda", predemanda);
 			result.include("disciplinas", disciplinas);
 		} catch (DAOException | ConnectionException e) {
-			result.include("erro",e.getMessage());
+			result.include(ERRO,e.getMessage());
 			result.forwardTo(this).index();
 		}
 	}
@@ -163,11 +166,11 @@ public class DashboardController {
 			
 			respostaBO.salvarResposta(resposta);
 		
-			result.include("msg","Pré-Demanda respondida com sucesso.");
+			result.include(MENSAGEM,"Pré-Demanda respondida com sucesso.");
 			result.forwardTo(this).index();
 
 		} catch (DAOException e) {
-			result.include("erro",e.getMessage());
+			result.include(ERRO,e.getMessage());
 			result.forwardTo(this).index();
 		}
 	}

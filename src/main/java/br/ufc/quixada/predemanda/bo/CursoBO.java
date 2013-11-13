@@ -17,30 +17,22 @@ public class CursoBO {
 	}
 
 	public Curso recuperarPeloId(Long id) throws ConnectionException {
-		Curso curso = cursoService.recuperarCurso(id);
-		return curso;
+		return cursoService.recuperarCurso(id);
 	}
 
 
 	public List<Curso> recuperarTodos() throws ConnectionException {
-		List<Curso> cursos = cursoService.listarCursos();
-		return cursos;
+		return cursoService.listarCursos();
 	}
 	
 	public Curso recuperarPeloIdCoordenador(Long id) throws ConnectionException {
 		Curso curso = cursoService.recuperarCursoDoCoordenador(id);
-		if ( curso.getId() == null) {
-			return null;
-		}
-		return curso;
+		return curso.getId() != null ? curso : null;
 	}
 
 	public Curso recuperarPeloAluno(Long idAluno) throws ConnectionException{
 		Curso curso = cursoService.recuperarCursoDoAluno(idAluno);
-		if ( curso.getId() == null) {
-			return null;
-		}
-		return curso;
+		return curso.getId() != null ? curso : null;
 	}
 
 }

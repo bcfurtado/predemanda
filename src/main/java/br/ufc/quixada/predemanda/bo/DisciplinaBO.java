@@ -18,13 +18,11 @@ public class DisciplinaBO {
 	}
 
 	public Disciplina recuperarDisciplina(Long id) throws ConnectionException{
-		Disciplina disciplina = disciplinaService.recuperarDisciplina(id);
-		return disciplina;
+		return disciplinaService.recuperarDisciplina(id);
 	}
 	
 	public List<Disciplina> recuperarTodas() throws ConnectionException{
-		List<Disciplina> disciplinas = disciplinaService.listarDisciplinas();
-		return disciplinas;
+		return disciplinaService.listarDisciplinas();
 	}
 
 	public List<Disciplina> recuperarDisciplinas(List<Long> idDisciplinas) throws ConnectionException {

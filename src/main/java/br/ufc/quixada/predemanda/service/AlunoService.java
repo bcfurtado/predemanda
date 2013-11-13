@@ -27,8 +27,7 @@ public class AlunoService {
 		
 		Gson gson = new Gson();
 
-		Aluno aluno = gson.fromJson(jsonResponse, Aluno.class);
-		return aluno;
+		return gson.fromJson(jsonResponse, Aluno.class);
 	}
 	
 	public List<Aluno> listarAlunos() throws ConnectionException{
@@ -65,17 +64,4 @@ public class AlunoService {
 		return lista;
 	}
 	
-	
-	public static void main(String args[]){
-		AlunoService service = new AlunoService();
-		try {
-			List<Aluno> alunos = service.listarAlunos();
-			for (Aluno aluno : alunos) {
-				System.out.println("Aluno:" + aluno.getMatricula());
-			}
-		} catch (ConnectionException e) {
-			e.printStackTrace();
-		}
-
-	}
 }

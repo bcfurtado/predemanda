@@ -4,8 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+import org.apache.log4j.Logger;
+
 public class ConfigReader {
 
+	private static Logger logger = Logger.getLogger(ConfigReader.class);
 	private static Properties config;
 
 	static {
@@ -13,9 +16,9 @@ public class ConfigReader {
 		try {
 			config.load( (ConfigReader.class).getResourceAsStream("/config.properties") );
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			logger.error("Arquivo não encontrado",e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("IOException",e);
 		}
 	}
 

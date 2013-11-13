@@ -25,8 +25,7 @@ public class DisciplinaService {
 		
 		Gson gson = new Gson();
 
-		Disciplina disciplina = gson.fromJson(jsonResponse, Disciplina.class);
-		return disciplina;
+		return gson.fromJson(jsonResponse, Disciplina.class);
 	}
 	
 	public List<Disciplina> listarDisciplinas() throws ConnectionException{
@@ -46,17 +45,4 @@ public class DisciplinaService {
 		return lista;
 	}
 	
-	
-	public static void main(String args[]){
-		DisciplinaService service = new DisciplinaService();
-		try {
-			List<Disciplina> disciplinas = service.listarDisciplinas();
-			for (Disciplina disciplina : disciplinas) {
-				System.out.println("Disciplina:" + disciplina.getNome() + " - " + disciplina.getCodigo() );
-			}
-		} catch (ConnectionException e) {
-			e.printStackTrace();
-		}
-
-	}
 }

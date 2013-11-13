@@ -15,8 +15,7 @@ public class DataConverter implements Converter<Date>{
 	public Date convert(String value, Class<? extends Date> type, ResourceBundle bundle) {
 		try {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-			Date data = simpleDateFormat.parse(value);
-			return data;
+			return simpleDateFormat.parse(value);
 		} catch (ParseException e) {
 			return null;
 		}

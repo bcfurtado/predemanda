@@ -18,7 +18,7 @@ public class PreDemandaBO {
 	
 	private PreDemandaDAO preDemandaDAO;
 	
-	private static final Logger logger = Logger.getLogger(PreDemandaBO.class);
+	private static Logger logger = Logger.getLogger(PreDemandaBO.class);
 	
 	public PreDemandaBO(PreDemandaDAO preDemandaDAO) {
 		this.preDemandaDAO = preDemandaDAO;

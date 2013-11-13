@@ -40,7 +40,7 @@ public class PreDemandaDAOImpl implements PreDemandaDAO {
 			query.setParameter("id", id);
 			return (PreDemanda) query.getSingleResult();
 		} catch (NoResultException e) {
-			throw new DAOException("Pré-Demanda não encontrada");
+			throw new DAOException("Pré-Demanda não encontrada",e);
 		}
 
 	}

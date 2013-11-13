@@ -9,4 +9,8 @@ public class ConnectionException extends Exception {
 	public ConnectionException(String msg) {
 		super(msg);
 	}
+	
+	public ConnectionException(String msg, Throwable e){
+		super(msg, e);
+	}
 }

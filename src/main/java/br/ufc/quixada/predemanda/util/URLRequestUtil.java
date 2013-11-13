@@ -23,6 +23,8 @@ import br.ufc.quixada.predemanda.exception.ConnectionException;
  */
 public class URLRequestUtil {
 
+	private static final String ENCODING = "UTF-8";
+	
 	private String urlConnection;
 	private TypeRequest typeRequest;
 
@@ -85,8 +87,8 @@ public class URLRequestUtil {
 			} else {
 				connection.setRequestMethod("GET");
 			}
-			connection.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-			connection.setRequestProperty("Accept-Charset", "UTF-8");
+			connection.setRequestProperty("Content-Type", "application/json;charset=" + ENCODING);
+			connection.setRequestProperty("Accept-Charset", ENCODING);
 
 			connection.setUseCaches(false);
 			connection.setDoInput(true);
@@ -101,7 +103,7 @@ public class URLRequestUtil {
 			}
 
 			InputStream is = connection.getInputStream();
-			BufferedReader br = new BufferedReader(new InputStreamReader(is,"UTF-8"));
+			BufferedReader br = new BufferedReader(new InputStreamReader(is,ENCODING));
 
 			String jsonResponse = "";
 			if (jsonResponse != null) {
@@ -112,9 +114,9 @@ public class URLRequestUtil {
 
 			return jsonResponse;
 		} catch (MalformedURLException e) {
-			throw new ConnectionException(e.getMessage());
+			throw new ConnectionException(e.getMessage(),e);
 		} catch (IOException e) {
-			throw new ConnectionException("Erro de conexão. Não foi possivel se conectar ao servidor.");
+			throw new ConnectionException("Erro de conexão. Não foi possivel se conectar ao servidor.",e);
 		}
 	}
 
@@ -136,9 +138,9 @@ public class URLRequestUtil {
 				result.append("&");
 			}
 
-			result.append(URLEncoder.encode(pair.getName(), "UTF-8"));
+			result.append(URLEncoder.encode(pair.getName(), ENCODING));
 			result.append("=");
-			result.append(URLEncoder.encode(pair.getValue(), "UTF-8"));
+			result.append(URLEncoder.encode(pair.getValue(), ENCODING));
 		}
 
 		return result.toString();
