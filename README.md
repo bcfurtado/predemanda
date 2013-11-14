@@ -1,6 +1,6 @@
 # Oráculo
 
-Oráculo ou sistema de Pré-Demandas é uma ferramenta de apoio a decisão criada para auxiliar o levamento dos dados necessários para a criação de uma Demanda na Universidade Federal do Ceará no Campus de Quixadá.
+Oráculo ou sistema de Pré-Demandas é uma ferramenta de apoio a decisão desenvolvida para auxiliar no processo de criação de uma Demanda na Universidade Federal do Ceará no Campus de Quixadá.
 
 ## Tecnologias Utilizadas
 - vRaptor 3.5.3
