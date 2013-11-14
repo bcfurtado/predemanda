@@ -19,4 +19,5 @@ public interface RespostaDAO {
 	
 	public List<Resposta> findByPreDemanda(Long idPreDemanda) throws DAOException;
 
+	public Long countQntDeSolicitacoesDaDisciplinaDeUmaPreDemanda(Long idPreDemanda, Long idDisciplina) throws DAOException;
 }

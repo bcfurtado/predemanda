@@ -58,4 +58,22 @@ public class RespostaDAOImpl implements RespostaDAO {
 		return query.getResultList();
 	}
 
+	public Long countQntDeSolicitacoesDaPreDemanda(Long idPreDemanda){
+		Query query = em.createQuery("select count(r) from Resposta as r where r.preDemanda = :preDemanda");
+		PreDemanda preDemanda = new PreDemanda();
+		preDemanda.setId(idPreDemanda);
+		query.setParameter("preDemanda", preDemanda);
+		return (Long) query.getSingleResult();
+	}
+
+	
+	public Long countQntDeSolicitacoesDaDisciplinaDeUmaPreDemanda(Long idPreDemanda, Long idDisciplina){
+		Query query = em.createQuery("select count(r) from Resposta as r where r.preDemanda = :preDemanda and :idDisciplina member of r.disciplinas");
+		PreDemanda preDemanda = new PreDemanda();
+		preDemanda.setId(idPreDemanda);
+		query.setParameter("preDemanda", preDemanda);
+		query.setParameter("idDisciplina",idDisciplina);
+		return (Long) query.getSingleResult();
+	}
+
 }

@@ -134,6 +134,9 @@ public class DashboardController {
 		try {
 			PreDemanda predemanda = predemandaBO.recuperarPeloId(id);
 			List<Disciplina> disciplinas = disciplinaBO.recuperarDisciplinas(predemanda.getDisciplinas());
+			for (Disciplina disciplina : disciplinas) {
+				disciplina.setQntSolicitacoes(respostaBO.recuperarQntDeSolicitacoes(predemanda.getId(), disciplina.getId()));
+			}
 			
 			result.include("predemanda", predemanda);
 			result.include("disciplinas", disciplinas);

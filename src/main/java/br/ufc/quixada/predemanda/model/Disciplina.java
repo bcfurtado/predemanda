@@ -8,6 +8,8 @@ public class Disciplina {
 	private String codigo;
 
 	private String nome;
+	
+	private Long qntSolicitacoes;
 
 	public Long getId() {
 		return id;
@@ -33,4 +35,12 @@ public class Disciplina {
 		this.nome = nome;
 	}
 
+	public Long getQntSolicitacoes() {
+		return qntSolicitacoes;
+	}
+
+	public void setQntSolicitacoes(Long qntSolicitacoes) {
+		this.qntSolicitacoes = qntSolicitacoes;
+	}
+	
 }

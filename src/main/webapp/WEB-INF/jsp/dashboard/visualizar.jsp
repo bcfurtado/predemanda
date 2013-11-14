@@ -35,14 +35,14 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Coordenador</label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" placeholder="${predemanda.coordenadorNome}" disabled>
+            <input class="form-control" type="text" value="${predemanda.coordenadorNome}" disabled>
           </div>
         </div>
         <!-- Curso -->
         <div class="form-group">
           <label class="col-sm-2 control-label">Curso</label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" placeholder="${predemanda.cursoNome}" disabled>
+            <input class="form-control" type="text" value="${predemanda.cursoNome}" disabled>
           </div>
         </div>
         <!-- Periodo da Pré Demanda -->
@@ -72,11 +72,15 @@
             <tr>
               <th>Codigo</th>
               <th>Nome</th>
+              <th>Qnt de Solicitações</th>
             </tr>
             <c:forEach items="${disciplinas}" var="disciplina">
             <tr>
               <td>${disciplina.codigo}</td>
               <td>${disciplina.nome}</td>
+              <c:if test="${sessaoWeb.coordenador}">
+              <td>${disciplina.qntSolicitacoes}</td>
+              </c:if>
             </tr>
             </c:forEach>
             </table>

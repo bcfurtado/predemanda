@@ -36,27 +36,27 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Coordenador</label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" placeholder="${predemanda.coordenadorNome}" disabled>
+            <input class="form-control" type="text" value="${predemanda.coordenadorNome}" disabled>
           </div>
         </div>
         <!-- Curso -->
         <div class="form-group">
           <label class="col-sm-2 control-label">Curso</label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" placeholder="${predemanda.cursoNome}" disabled>
+            <input class="form-control" type="text" value="${predemanda.cursoNome}" disabled>
           </div>
         </div>
         <!-- Periodo da Pré Demanda -->
         <div class="form-group">
           <label class="col-sm-2 control-label" for="data-inicio">Data Inicio</label>
           <div class="col-sm-10">
-            <input type="date" class="form-control" value="${predemanda.dataInicio}" disabled />
+            <input type="date" class="form-control" value="<fmt:formatDate value="${predemanda.dataInicio}" pattern="dd/MM/yyyy"/>" disabled/>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label" for="data-fim">Data Fim</label>
           <div class="col-sm-10">
-            <input type="date" class="form-control" value="${predemanda.dataFim}" disabled/>
+            <input type="date" class="form-control" value="<fmt:formatDate value="${predemanda.dataFim}" pattern="dd/MM/yyyy"/>" disabled/>
           </div>
         </div>
         <!-- Disciplinas -->
