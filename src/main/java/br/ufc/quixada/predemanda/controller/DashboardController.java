@@ -119,16 +119,6 @@ public class DashboardController {
 		}
 	}
 	
-	@Path("/dashboard/listar")
-	public void listar(){
-		try {
-			result.include("predemandas", predemandaBO.recuperarTodas());
-		} catch (DAOException e) {
-			result.include(ERRO,e.getMessage());
-			result.forwardTo(this).index();
-		}
-	}
-	
 	@Path("/dashboard/visualizar/{id}")
 	public void visualizar(Long id){
 		try {

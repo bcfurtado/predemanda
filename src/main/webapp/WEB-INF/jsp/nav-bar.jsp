@@ -12,7 +12,6 @@
           <li class="active"><a href="${linkTo[DashboardController].index}">Inicio</a></li>
           <c:if test="${sessaoWeb.coordenador}">
             <li><a href="${linkTo[DashboardController].criar}">Criar Pré-Demanda</a></li>
-            <li><a href="${linkTo[DashboardController].listar}">Listar Pré-Demanda</a></li>
           </c:if>
         </ul>
         <ul class="nav navbar-nav navbar-right">

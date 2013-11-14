@@ -72,7 +72,9 @@
             <tr>
               <th>Codigo</th>
               <th>Nome</th>
+              <c:if test="${sessaoWeb.coordenador}">
               <th>Qnt de Solicitações</th>
+              </c:if>
             </tr>
             <c:forEach items="${disciplinas}" var="disciplina">
             <tr>
