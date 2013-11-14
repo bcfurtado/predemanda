@@ -10,6 +10,7 @@ import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.ufc.quixada.predemanda.auth.Restrito;
 import br.ufc.quixada.predemanda.bo.CursoBO;
 import br.ufc.quixada.predemanda.bo.DisciplinaBO;
 import br.ufc.quixada.predemanda.bo.PreDemandaBO;
@@ -22,6 +23,7 @@ import br.ufc.quixada.predemanda.model.Disciplina;
 import br.ufc.quixada.predemanda.model.PreDemanda;
 import br.ufc.quixada.predemanda.model.Resposta;
 
+@Restrito
 @Resource
 public class DashboardController {
 
