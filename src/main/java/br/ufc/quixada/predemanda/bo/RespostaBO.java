@@ -24,6 +24,10 @@ public class RespostaBO {
 		return respostaDAO.findByPreDemanda(id);
 	}
 	
+	public Long recuperarQntDeSolicitacoes(Long idPreDemanda) throws DAOException {
+		return respostaDAO.countQntDeSolicitacoesDaPreDemanda(idPreDemanda);
+	}
+
 	public Long recuperarQntDeSolicitacoes(Long idPreDemanda, Long idDisciplina) throws DAOException{
 		return respostaDAO.countQntDeSolicitacoesDaDisciplinaDeUmaPreDemanda(idPreDemanda, idDisciplina);
 	}

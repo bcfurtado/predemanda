@@ -130,6 +130,11 @@ public class DashboardController {
 				disciplina.setQntSolicitacoes(respostaBO.recuperarQntDeSolicitacoes(predemanda.getId(), disciplina.getId()));
 			}
 			
+			if(sessaoWeb.isCoordenador()){
+				Long qntRespostas = respostaBO.recuperarQntDeSolicitacoes(predemanda.getId());;
+				result.include("qntRespostas", qntRespostas);			
+			}
+			
 			result.include("predemanda", predemanda);
 			result.include("disciplinas", disciplinas);
 		} catch (DAOException | ConnectionException e) {

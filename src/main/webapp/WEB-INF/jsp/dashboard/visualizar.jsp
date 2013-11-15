@@ -91,6 +91,10 @@
 
       </form>
 
+
+      <c:if test="${sessaoWeb.coordenador}">
+      <p>Quantidade de Alunos que responderam a pré-demanda: ${qntRespostas}</p>
+      </c:if>
     </div>
 
 
